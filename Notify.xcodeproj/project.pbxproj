@@ -13,6 +13,7 @@
 		D41E98921BAC6CAB00C0B101 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D41E98901BAC6CAB00C0B101 /* Main.storyboard */; };
 		D41E989D1BAC6CAB00C0B101 /* NotifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41E989C1BAC6CAB00C0B101 /* NotifyTests.swift */; };
 		D41E98A81BAC6CAB00C0B101 /* NotifyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41E98A71BAC6CAB00C0B101 /* NotifyUITests.swift */; };
+		D4B98ACC1BAE3BC0006EC82F /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B98ACB1BAE3BC0006EC82F /* Song.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		D41E98A31BAC6CAB00C0B101 /* NotifyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NotifyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D41E98A71BAC6CAB00C0B101 /* NotifyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyUITests.swift; sourceTree = "<group>"; };
 		D41E98A91BAC6CAB00C0B101 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4B98ACB1BAE3BC0006EC82F /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Song.swift; path = Objects/Song.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 		D41E98891BAC6CAB00C0B101 /* Notify */ = {
 			isa = PBXGroup;
 			children = (
+				D4B98ACD1BAE3BC4006EC82F /* Objects */,
 				D41E988A1BAC6CAB00C0B101 /* AppDelegate.swift */,
 				D41E988C1BAC6CAB00C0B101 /* ViewController.swift */,
 				D41E988E1BAC6CAB00C0B101 /* Assets.xcassets */,
@@ -120,6 +123,14 @@
 				D41E98A91BAC6CAB00C0B101 /* Info.plist */,
 			);
 			path = NotifyUITests;
+			sourceTree = "<group>";
+		};
+		D4B98ACD1BAE3BC4006EC82F /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				D4B98ACB1BAE3BC0006EC82F /* Song.swift */,
+			);
+			name = Objects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4B98ACC1BAE3BC0006EC82F /* Song.swift in Sources */,
 				D41E988D1BAC6CAB00C0B101 /* ViewController.swift in Sources */,
 				D41E988B1BAC6CAB00C0B101 /* AppDelegate.swift in Sources */,
 			);
@@ -476,6 +488,7 @@
 				D41E98AE1BAC6CAB00C0B101 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D41E98AF1BAC6CAB00C0B101 /* Build configuration list for PBXNativeTarget "NotifyTests" */ = {
 			isa = XCConfigurationList;
@@ -484,6 +497,7 @@
 				D41E98B11BAC6CAB00C0B101 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D41E98B21BAC6CAB00C0B101 /* Build configuration list for PBXNativeTarget "NotifyUITests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +506,7 @@
 				D41E98B41BAC6CAB00C0B101 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
