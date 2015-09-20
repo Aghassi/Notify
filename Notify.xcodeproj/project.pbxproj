@@ -11,7 +11,6 @@
 		3BF2FD091BAF652B00C5A133 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2FD031BAF652500C5A133 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3BF2FD0D1BAF652F00C5A133 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2FCCB1BAF64CC00C5A133 /* Alamofire.framework */; };
 		3BF2FD0E1BAF652F00C5A133 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2FCCB1BAF64CC00C5A133 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3BF2FD821BAF72E000C5A133 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BF2FD801BAF72E000C5A133 /* MainMenu.xib */; settings = {ASSET_TAGS = (); }; };
 		D41E988B1BAC6CAB00C0B101 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41E988A1BAC6CAB00C0B101 /* AppDelegate.swift */; };
 		D41E988D1BAC6CAB00C0B101 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41E988C1BAC6CAB00C0B101 /* ViewController.swift */; };
 		D41E988F1BAC6CAB00C0B101 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D41E988E1BAC6CAB00C0B101 /* Assets.xcassets */; };
@@ -20,6 +19,7 @@
 		D4B98ACC1BAE3BC0006EC82F /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B98ACB1BAE3BC0006EC82F /* Song.swift */; settings = {ASSET_TAGS = (); }; };
 		D4B98AD01BAE3EBB006EC82F /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B98ACF1BAE3EBB006EC82F /* NotificationHandler.swift */; settings = {ASSET_TAGS = (); }; };
 		D4B98AD51BAE5192006EC82F /* SystemHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B98AD41BAE5192006EC82F /* SystemHelper.swift */; settings = {ASSET_TAGS = (); }; };
+		D4E333861BAF75E1001938E6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E333841BAF75E1001938E6 /* MainMenu.xib */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,7 +141,6 @@
 /* Begin PBXFileReference section */
 		3BF2FCC01BAF64CC00C5A133 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		3BF2FCF61BAF652400C5A133 /* SwiftyJSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyJSON.xcodeproj; path = SwiftyJSON/SwiftyJSON.xcodeproj; sourceTree = "<group>"; };
-		3BF2FD811BAF72E000C5A133 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = ../../../Desktop/Test/Test/Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		D41E98871BAC6CAB00C0B101 /* Notify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D41E988A1BAC6CAB00C0B101 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D41E988C1BAC6CAB00C0B101 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +155,7 @@
 		D4B98ACB1BAE3BC0006EC82F /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Song.swift; path = Objects/Song.swift; sourceTree = "<group>"; };
 		D4B98ACF1BAE3EBB006EC82F /* NotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationHandler.swift; path = Handlers/NotificationHandler.swift; sourceTree = "<group>"; };
 		D4B98AD41BAE5192006EC82F /* SystemHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SystemHelper.swift; path = "System Helpers/SystemHelper.swift"; sourceTree = "<group>"; };
+		D4E333851BAF75E1001938E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,7 +234,7 @@
 		D41E98891BAC6CAB00C0B101 /* Notify */ = {
 			isa = PBXGroup;
 			children = (
-				3BF2FD801BAF72E000C5A133 /* MainMenu.xib */,
+				D4E333841BAF75E1001938E6 /* MainMenu.xib */,
 				D4B98AD11BAE5167006EC82F /* System Helpers */,
 				D4B98ACE1BAE3EA4006EC82F /* Handlers */,
 				D4B98ACD1BAE3BC4006EC82F /* Objects */,
@@ -478,7 +478,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D41E988F1BAC6CAB00C0B101 /* Assets.xcassets in Resources */,
-				3BF2FD821BAF72E000C5A133 /* MainMenu.xib in Resources */,
+				D4E333861BAF75E1001938E6 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,10 +553,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		3BF2FD801BAF72E000C5A133 /* MainMenu.xib */ = {
+		D4E333841BAF75E1001938E6 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				3BF2FD811BAF72E000C5A133 /* Base */,
+				D4E333851BAF75E1001938E6 /* Base */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";

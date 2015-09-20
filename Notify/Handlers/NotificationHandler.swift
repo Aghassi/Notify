@@ -39,23 +39,27 @@ class NotificationHandler: NSObject, NSUserNotificationCenterDelegate {
         if (SystemHelper.checkPlayerStateIsPlayingAndSpotifyIsNotInForeground(stateOfPlayer)) {
             // Set the current track
             setCurrentTrack(userInfo)
-            // Only send a notification if the "track" is not an ad.
-            // This doesn't seem necessary, but it's better to check
-            if (!track.album.hasPrefix("http")) {
-                let notificationToDeliver: NSUserNotification = NSUserNotification()
-                notificationToDeliver.title = track.name
-                notificationToDeliver.subtitle = track.album
-                notificationToDeliver.informativeText = track.artist
-                notificationToDeliver.contentImage = track.image
-            
-                //Deliver Notification to user
-                NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(notificationToDeliver)
-            }
         }
         else {
             // Remove all the notifications we have delivered
             NSUserNotificationCenter.defaultUserNotificationCenter().removeAllDeliveredNotifications()
         }
+    }
+    
+    func sendNotification() {
+        // Only send a notification if the "track" is not an ad.
+        // This doesn't seem necessary, but it's better to check
+        if (!track.album.hasPrefix("http")) {
+            let notificationToDeliver: NSUserNotification = NSUserNotification()
+            notificationToDeliver.title = track.name
+            notificationToDeliver.subtitle = track.album
+            notificationToDeliver.informativeText = track.artist
+            notificationToDeliver.contentImage = track.image
+            
+            //Deliver Notification to user
+            NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(notificationToDeliver)
+        }
+
     }
     
     /**********************
@@ -74,6 +78,7 @@ class NotificationHandler: NSObject, NSUserNotificationCenterDelegate {
         let fullId = info["Track ID"] as! String
         track.trackID = fullId.componentsSeparatedByString(":")[2]
         
+        // Get the album art for the track
         let spotifyApiUrl = "https://api.spotify.com/v1/tracks/" + track.trackID
         Alamofire.request(.GET, spotifyApiUrl, parameters: nil)
             .responseJSON { (req, res, result) in
@@ -86,12 +91,13 @@ class NotificationHandler: NSObject, NSUserNotificationCenterDelegate {
                     var image = json["album"]["images"][0]
                     let albumArtworkUrl: NSURL = NSURL(string: image["url"].stringValue)!
                     let albumArtwork = NSImage(contentsOfURL: albumArtworkUrl)
+                    NSLog("%@", albumArtworkUrl)
                     self.track.image = albumArtwork!
+                    
+                    // Send the notification
+                    self.sendNotification()
                 }
         }
     }
-    
-    func currentTrack() -> Song {
-        return track
-    }
+
 }
