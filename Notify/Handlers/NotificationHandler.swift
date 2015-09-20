@@ -82,8 +82,8 @@ class NotificationHandler: NSObject, NSUserNotificationCenterDelegate {
                 }
                 else {
                     var json = JSON(result.value!)
-                    // Get the smallest size. Roughly 64x64
-                    var image = json["album"]["images"][2]
+                    // Get the album art. Size doesn't matter.
+                    var image = json["album"]["images"][0]
                     let albumArtworkUrl: NSURL = NSURL(string: image["url"].stringValue)!
                     let albumArtwork = NSImage(contentsOfURL: albumArtworkUrl)
                     self.track.image = albumArtwork!
