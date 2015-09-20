@@ -10,9 +10,17 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
+    @IBOutlet weak var window: NSWindow!
+    let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-2)
+    
     let helper = NotificationHandler()
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
+        if let button = statusItem.button {
+            button.image = NSImage(named: "statusIcon")
+            button.action = Selector("printQuote:")
+        }
+        
         // Set as delegate
         NSUserNotificationCenter.defaultUserNotificationCenter().delegate = helper
         // Set observer to when Spotify state changes
@@ -25,6 +33,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
+    }
+    
+    func printQuote(sender: AnyObject) {
+        let quoteText = "Never put off until tomorrow what you can do the day after tomorrow."
+        let quoteAuthor = "Mark Twain"
+        
+        NSLog("\(quoteText) — \(quoteAuthor)")
     }
 
 
