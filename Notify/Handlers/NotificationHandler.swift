@@ -9,7 +9,9 @@
 //
 
 import Foundation
+import Cocoa
 import Alamofire
+import SwiftyJSON
 
 class NotificationHandler: NSObject, NSUserNotificationCenterDelegate {
     // The current track being played
@@ -44,6 +46,7 @@ class NotificationHandler: NSObject, NSUserNotificationCenterDelegate {
                 notificationToDeliver.title = track.name
                 notificationToDeliver.subtitle = track.album
                 notificationToDeliver.informativeText = track.artist
+                notificationToDeliver.contentImage = track.image
             
                 //Deliver Notification to user
                 NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(notificationToDeliver)
@@ -66,19 +69,24 @@ class NotificationHandler: NSObject, NSUserNotificationCenterDelegate {
         track.name = info["Name"] as! String
         track.artist = info["Artist"] as! String
         track.album = info["Album"] as! String
-        track.trackID = info["Track ID"] as! String
         
-        let spotifyApiUrl = "https://embed.spotify.com/oembed/?url=" + track.trackID
+        // We receive values like spotify:track:0QXPKOlwGXrEUId6H1Eyxa. We just need the last section
+        let fullId = info["Track ID"] as! String
+        track.trackID = fullId.componentsSeparatedByString(":")[2]
+        
+        let spotifyApiUrl = "https://api.spotify.com/v1/tracks/" + track.trackID
         Alamofire.request(.GET, spotifyApiUrl, parameters: nil)
-            .responseJSON { (req, res, json, error) in
-                if(error != nil) {
-                    NSLog("Error: \(error)")
+            .responseJSON { (req, res, result) in
+                if (result.isFailure) {
+                    NSLog("Error: \(result.error)")
                 }
                 else {
-                    var json = JSON(json!)
-                    let albumArtworkUrl: NSURL = NSURL(string: json["thumbnail_url"].stringValue)!
+                    var json = JSON(result.value!)
+                    // Get the smallest size. Roughly 64x64
+                    var image = json["album"]["images"][2]
+                    let albumArtworkUrl: NSURL = NSURL(string: image["url"].stringValue)!
                     let albumArtwork = NSImage(contentsOfURL: albumArtworkUrl)
-                    track.image = albumArtwork
+                    self.track.image = albumArtwork!
                 }
         }
     }
