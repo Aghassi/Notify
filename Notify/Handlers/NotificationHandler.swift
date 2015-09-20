@@ -12,17 +12,22 @@ import Foundation
 
 class NotificationHandler: NSObject, NSUserNotificationCenterDelegate {
     // The current track being played
-    var track = Song()
+    var track : Song
     // Previous trackID
-    var previousTrackID = 0
+    var previousTrackID : String
     
     override init() {
+        // Set properties
+        track = Song()
+        previousTrackID = ""
+        
         super.init()
+        
         // Set as delegate
         NSUserNotificationCenter.defaultUserNotificationCenter().delegate = self
         // Set observer to when Spotify state changes
         NSDistributedNotificationCenter.defaultCenter().addObserver(self,
-                                                        selector: Selector("stateChanged"),
+                                                        selector: "stateChanged:",
                                                         name: "com.spotify.client.PlaybackStateChanged",
                                                         object: nil,
                                                         suspensionBehavior: NSNotificationSuspensionBehavior.DeliverImmediately)
@@ -49,8 +54,8 @@ class NotificationHandler: NSObject, NSUserNotificationCenterDelegate {
             NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(notificationToDeliver)
         }
         else {
-            // We don't do anything if spotify is running
-            return
+            // Remove all the notifications we have delivered
+            NSUserNotificationCenter.defaultUserNotificationCenter().removeAllDeliveredNotifications()
         }
     }
     
@@ -65,7 +70,7 @@ class NotificationHandler: NSObject, NSUserNotificationCenterDelegate {
         track.name = info["Name"] as! String
         track.artist = info["Artist"] as! String
         track.album = info["Album"] as! String
-        track.trackID = info["Track ID"] as! Int
+        track.trackID = info["Track ID"] as! String
     }
     
     func currentTrack() -> Song {

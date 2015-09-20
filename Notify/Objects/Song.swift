@@ -17,6 +17,6 @@ class Song: NSObject {
         name = "",
         artist = "",
         album = "",
-        trackID = 0,
+        trackID = "",
         image = NSImage()
 }
