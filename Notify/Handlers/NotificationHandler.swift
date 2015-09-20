@@ -9,6 +9,7 @@
 //
 
 import Foundation
+import Alamofire
 
 class NotificationHandler: NSObject, NSUserNotificationCenterDelegate {
     // The current track being played
@@ -66,6 +67,20 @@ class NotificationHandler: NSObject, NSUserNotificationCenterDelegate {
         track.artist = info["Artist"] as! String
         track.album = info["Album"] as! String
         track.trackID = info["Track ID"] as! String
+        
+        let spotifyApiUrl = "https://embed.spotify.com/oembed/?url=" + track.trackID
+        Alamofire.request(.GET, spotifyApiUrl, parameters: nil)
+            .responseJSON { (req, res, json, error) in
+                if(error != nil) {
+                    NSLog("Error: \(error)")
+                }
+                else {
+                    var json = JSON(json!)
+                    let albumArtworkUrl: NSURL = NSURL(string: json["thumbnail_url"].stringValue)!
+                    let albumArtwork = NSImage(contentsOfURL: albumArtworkUrl)
+                    track.image = albumArtwork
+                }
+        }
     }
     
     func currentTrack() -> Song {
