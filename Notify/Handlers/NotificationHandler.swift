@@ -36,13 +36,17 @@ class NotificationHandler: NSObject, NSUserNotificationCenterDelegate {
         if (SystemHelper.checkPlayerStateIsPlayingAndSpotifyIsNotInForeground(stateOfPlayer)) {
             // Set the current track
             setCurrentTrack(userInfo)
-            let notificationToDeliver: NSUserNotification = NSUserNotification()
-            notificationToDeliver.title = track.name
-            notificationToDeliver.subtitle = track.album
-            notificationToDeliver.informativeText = track.artist
+            // Only send a notification if the "track" is not an ad.
+            // This doesn't seem necessary, but it's better to check
+            if (!track.album.hasPrefix("http")) {
+                let notificationToDeliver: NSUserNotification = NSUserNotification()
+                notificationToDeliver.title = track.name
+                notificationToDeliver.subtitle = track.album
+                notificationToDeliver.informativeText = track.artist
             
-            //Deliver Notification to user
-            NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(notificationToDeliver)
+                //Deliver Notification to user
+                NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(notificationToDeliver)
+            }
         }
         else {
             // Remove all the notifications we have delivered
