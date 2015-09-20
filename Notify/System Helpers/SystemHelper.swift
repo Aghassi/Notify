@@ -1,5 +1,8 @@
 //
 //  SystemHelper.swift
+//  Contains a collection of methods that may be used to detect certain
+//  system based properties
+//
 //  Notify
 //
 //  Created by David Aghassi on 9/19/15.
@@ -10,7 +13,9 @@ import Foundation
 import Cocoa
 
 class SystemHelper {
-    // Checks if spotify is currently playing
+    /*
+    Checks if spotify is currently playing and is not in foreground
+    */
     static func checkPlayerStateIsPlayingAndSpotifyIsNotInForeground(playerState: String) -> Bool {
         let foregroundApp : NSRunningApplication = NSWorkspace.sharedWorkspace().frontmostApplication!
         
