@@ -12,9 +12,9 @@ import Foundation
 
 class NotificationHandler: NSObject, NSUserNotificationCenterDelegate {
     // The current track being played
-    var track : Song
+    var track: Song
     // Previous trackID
-    var previousTrackID : String
+    var previousTrackID: String
     
     override init() {
         // Set properties
@@ -30,13 +30,13 @@ class NotificationHandler: NSObject, NSUserNotificationCenterDelegate {
     **/
     func stateChanged(notification: NSNotification) {
         // Assign constant userInfo as type NSDictionary
-        let userInfo : NSDictionary = notification.userInfo!
-        let stateOfPlayer : String = userInfo["Player State"] as! String
+        let userInfo: NSDictionary = notification.userInfo!
+        let stateOfPlayer: String = userInfo["Player State"] as! String
         
         if (SystemHelper.checkPlayerStateIsPlayingAndSpotifyIsNotInForeground(stateOfPlayer)) {
             // Set the current track
             setCurrentTrack(userInfo)
-            let notificationToDeliver : NSUserNotification = NSUserNotification()
+            let notificationToDeliver: NSUserNotification = NSUserNotification()
             notificationToDeliver.title = track.name
             notificationToDeliver.subtitle = track.album
             notificationToDeliver.informativeText = track.artist
