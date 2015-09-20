@@ -22,15 +22,6 @@ class NotificationHandler: NSObject, NSUserNotificationCenterDelegate {
         previousTrackID = ""
         
         super.init()
-        
-        // Set as delegate
-        NSUserNotificationCenter.defaultUserNotificationCenter().delegate = self
-        // Set observer to when Spotify state changes
-        NSDistributedNotificationCenter.defaultCenter().addObserver(self,
-                                                        selector: "stateChanged:",
-                                                        name: "com.spotify.client.PlaybackStateChanged",
-                                                        object: nil,
-                                                        suspensionBehavior: NSNotificationSuspensionBehavior.DeliverImmediately)
     }
     
     /**
