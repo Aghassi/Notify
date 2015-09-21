@@ -8,4 +8,6 @@
 
 import Foundation
 
-let spotifyClient = "com.spotify.client"
+enum Client: String {
+    case Spotify = "com.spotify.client"
+}

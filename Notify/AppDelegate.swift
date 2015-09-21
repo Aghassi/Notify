@@ -13,12 +13,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var statusMenu: NSMenu!
     @IBOutlet weak var playPause: NSMenuItem!
-    let spotify: ApplicationController = SpotifyController()
     
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
     
     // Delivers notifications when the tracks change
     let helper = NotificationHandler()
+    
+    let spotify: ApplicationController = SpotifyController()
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Set statusbar icon
@@ -35,12 +36,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         // Set observer to when Spotify state changes
         NSDistributedNotificationCenter.defaultCenter().addObserver(helper.self,
             selector: "stateChanged:",
-            name: spotifyClient + ".PlaybackStateChanged",
+            name: Client.Spotify.rawValue + ".PlaybackStateChanged",
             object: nil,
             suspensionBehavior: NSNotificationSuspensionBehavior.DeliverImmediately)
         NSDistributedNotificationCenter.defaultCenter().addObserver(self,
             selector: "togglePlayPauseText:",
-            name: spotifyClient + ".PlaybackStateChanged",
+            name: Client.Spotify.rawValue + ".PlaybackStateChanged",
             object: nil,
             suspensionBehavior: NSNotificationSuspensionBehavior.DeliverImmediately)
     }

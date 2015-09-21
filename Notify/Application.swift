@@ -9,6 +9,6 @@
 import Foundation
 
 enum Application: String {
-    case Spotify = "Spotify"
-    case iTunes = "iTunes"
+    case Spotify
+    case iTunes
 }
