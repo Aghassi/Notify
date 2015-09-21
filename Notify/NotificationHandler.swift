@@ -11,8 +11,8 @@ import Foundation
 protocol NotificationHandler {
     // The current track being played
     var track: Song { get }
-    
     func setCurrentTrack(info: NSDictionary)
+    func stateChanged(notification: NSNotification)
 }
 
 extension NotificationHandler {

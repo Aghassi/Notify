@@ -17,9 +17,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
     
     // Delivers notifications when the tracks change
-    let helper = ITunesNotificationHandler()
+    let spotifyHelper = SpotifyNotificationHandler()
+    let itunesHelper = ITunesNotificationHandler()
     
     let spotify: ApplicationController = SpotifyController()
+    let itunes: ApplicationController = ITunesController()
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Set statusbar icon
@@ -31,19 +33,34 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             statusItem.menu = statusMenu
         }
         
-        // Set as delegate
-        NSUserNotificationCenter.defaultUserNotificationCenter().delegate = helper
+        // Set up Spotify listeners
+        NSUserNotificationCenter.defaultUserNotificationCenter().delegate = spotifyHelper
         // Set observer to when Spotify state changes
-        NSDistributedNotificationCenter.defaultCenter().addObserver(helper.self,
+        NSDistributedNotificationCenter.defaultCenter().addObserver(spotifyHelper.self,
             selector: "stateChanged:",
-            name: Client.iTunes.rawValue + ".playerInfo",
+            name: Client.Spotify.rawValue + "." + PlaybackChanged.Spotify.rawValue,
             object: nil,
             suspensionBehavior: NSNotificationSuspensionBehavior.DeliverImmediately)
         NSDistributedNotificationCenter.defaultCenter().addObserver(self,
             selector: "togglePlayPauseText:",
-            name: Client.iTunes.rawValue + ".playerInfo",
+            name: Client.Spotify.rawValue + "." + PlaybackChanged.Spotify.rawValue,
             object: nil,
             suspensionBehavior: NSNotificationSuspensionBehavior.DeliverImmediately)
+        
+        // Set up iTunes listeners
+        NSUserNotificationCenter.defaultUserNotificationCenter().delegate = itunesHelper
+        // Set observer to when Spotify state changes
+        NSDistributedNotificationCenter.defaultCenter().addObserver(itunesHelper.self,
+            selector: "stateChanged:",
+            name: Client.iTunes.rawValue + "." + PlaybackChanged.iTunes.rawValue,
+            object: nil,
+            suspensionBehavior: NSNotificationSuspensionBehavior.DeliverImmediately)
+        NSDistributedNotificationCenter.defaultCenter().addObserver(self,
+            selector: "togglePlayPauseText:",
+            name: Client.iTunes.rawValue + "." + PlaybackChanged.iTunes.rawValue,
+            object: nil,
+            suspensionBehavior: NSNotificationSuspensionBehavior.DeliverImmediately)
+        
     }
     
     func applicationWillTerminate(aNotification: NSNotification) {
@@ -55,16 +72,19 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     }
     
     @IBAction func nextTrack(sender: NSMenuItem) {
-        spotify.sendCommand(.Next)
+        itunes.sendCommand(.Next)
+//        spotify.sendCommand(.Next)
     }
     
     @IBAction func prevTrack(sender: NSMenuItem) {
-        spotify.sendCommand(.Previous)
+        itunes.sendCommand(.Previous)
+//        spotify.sendCommand(.Previous)
     }
     
     // Would like to change the menu item text if we can tell if spotify is playing
     @IBAction func playPauseToggle(sender: NSMenuItem) {
-        spotify.sendCommand(.PlayPause)
+        itunes.sendCommand(.PlayPause)
+//        spotify.sendCommand(.PlayPause)
     }
     
     /**
