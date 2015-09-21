@@ -11,6 +11,8 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
     @IBOutlet weak var window: NSWindow!
+    @IBOutlet weak var statusMenu: NSMenu!
+    
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
     
     let helper = NotificationHandler()
@@ -19,7 +21,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         if let button = statusItem.button {
             button.image = NSImage(named: "statusIcon")
             button.image?.template = true   // sets the icon to inverted color for dark mode
-            button.action = Selector("printQuote:")
+            button.action = Selector("quitClicked:")
+            
+            statusItem.menu = statusMenu
         }
         
         // Set as delegate
@@ -36,13 +40,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         // Insert code here to tear down your application
     }
     
-    func printQuote(sender: AnyObject) {
-        let quoteText = "Never put off until tomorrow what you can do the day after tomorrow."
-        let quoteAuthor = "Mark Twain"
-        
-        NSLog("\(quoteText) — \(quoteAuthor)")
+    @IBAction func quitClicked(sender: NSMenuItem) {
+        NSApplication.sharedApplication().terminate(self)
     }
-
-
 }
 

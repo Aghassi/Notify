@@ -12,7 +12,6 @@
 		3BF2FD0D1BAF652F00C5A133 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2FCCB1BAF64CC00C5A133 /* Alamofire.framework */; };
 		3BF2FD0E1BAF652F00C5A133 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF2FCCB1BAF64CC00C5A133 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D41E988B1BAC6CAB00C0B101 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41E988A1BAC6CAB00C0B101 /* AppDelegate.swift */; };
-		D41E988D1BAC6CAB00C0B101 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41E988C1BAC6CAB00C0B101 /* ViewController.swift */; };
 		D41E988F1BAC6CAB00C0B101 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D41E988E1BAC6CAB00C0B101 /* Assets.xcassets */; };
 		D41E989D1BAC6CAB00C0B101 /* NotifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41E989C1BAC6CAB00C0B101 /* NotifyTests.swift */; };
 		D41E98A81BAC6CAB00C0B101 /* NotifyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41E98A71BAC6CAB00C0B101 /* NotifyUITests.swift */; };
@@ -143,7 +142,6 @@
 		3BF2FCF61BAF652400C5A133 /* SwiftyJSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyJSON.xcodeproj; path = SwiftyJSON/SwiftyJSON.xcodeproj; sourceTree = "<group>"; };
 		D41E98871BAC6CAB00C0B101 /* Notify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D41E988A1BAC6CAB00C0B101 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D41E988C1BAC6CAB00C0B101 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D41E988E1BAC6CAB00C0B101 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D41E98931BAC6CAB00C0B101 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D41E98981BAC6CAB00C0B101 /* NotifyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NotifyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -239,7 +237,6 @@
 				D4B98ACE1BAE3EA4006EC82F /* Handlers */,
 				D4B98ACD1BAE3BC4006EC82F /* Objects */,
 				D41E988A1BAC6CAB00C0B101 /* AppDelegate.swift */,
-				D41E988C1BAC6CAB00C0B101 /* ViewController.swift */,
 				D41E988E1BAC6CAB00C0B101 /* Assets.xcassets */,
 				D41E98931BAC6CAB00C0B101 /* Info.plist */,
 			);
@@ -506,7 +503,6 @@
 				D4B98ACC1BAE3BC0006EC82F /* Song.swift in Sources */,
 				D4B98AD51BAE5192006EC82F /* SystemHelper.swift in Sources */,
 				D4B98AD01BAE3EBB006EC82F /* NotificationHandler.swift in Sources */,
-				D41E988D1BAC6CAB00C0B101 /* ViewController.swift in Sources */,
 				D41E988B1BAC6CAB00C0B101 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
