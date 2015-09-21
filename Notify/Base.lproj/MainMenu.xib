@@ -37,6 +37,7 @@
                         <action selector="playPauseToggle:" target="Voe-Tx-rLC" id="eoX-Gz-n3S"/>
                     </connections>
                 </menuItem>
+                <menuItem isSeparatorItem="YES" id="jQH-r3-AEt"/>
                 <menuItem title="Quit Notify" id="BrK-b2-4N1">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
