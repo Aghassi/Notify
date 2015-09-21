@@ -24,6 +24,7 @@
 		D4B98ACC1BAE3BC0006EC82F /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B98ACB1BAE3BC0006EC82F /* Song.swift */; settings = {ASSET_TAGS = (); }; };
 		D4B98AD01BAE3EBB006EC82F /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B98ACF1BAE3EBB006EC82F /* NotificationHandler.swift */; settings = {ASSET_TAGS = (); }; };
 		D4B98AD51BAE5192006EC82F /* SystemHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B98AD41BAE5192006EC82F /* SystemHelper.swift */; settings = {ASSET_TAGS = (); }; };
+		D4CBB6351BB0C9160070A494 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D41E988E1BAC6CAB00C0B101 /* Assets.xcassets */; };
 		D4D04CD51BB0AEEA004C9326 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D04CD41BB0AEEA004C9326 /* NotificationCenter.framework */; settings = {ASSET_TAGS = (); }; };
 		D4D04CDA1BB0AEEB004C9326 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D04CD91BB0AEEB004C9326 /* TodayViewController.swift */; };
 		D4D04CDD1BB0AEEB004C9326 /* TodayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4D04CDB1BB0AEEB004C9326 /* TodayViewController.xib */; };
@@ -623,6 +624,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4CBB6351BB0C9160070A494 /* Assets.xcassets in Resources */,
 				D4D04CDD1BB0AEEB004C9326 /* TodayViewController.xib in Resources */,
 				D4D04CE11BB0AEEB004C9326 /* InfoPlist.strings in Resources */,
 			);
@@ -893,12 +895,13 @@
 		D4D04CE51BB0AEEB004C9326 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = NCWidget/NCWidget.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = NCWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = aghassi.Notify.NCWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -908,12 +911,13 @@
 		D4D04CE61BB0AEEB004C9326 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = NCWidget/NCWidget.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = NCWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = aghassi.Notify.NCWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -966,6 +970,7 @@
 				D4D04CE61BB0AEEB004C9326 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
