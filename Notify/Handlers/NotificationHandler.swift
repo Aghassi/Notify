@@ -92,7 +92,6 @@ class NotificationHandler: NSObject, NSUserNotificationCenterDelegate {
                     var image = json["album"]["images"][0]
                     let albumArtworkUrl: NSURL = NSURL(string: image["url"].stringValue)!
                     let albumArtwork = NSImage(contentsOfURL: albumArtworkUrl)
-                    NSLog("%@", albumArtworkUrl)
                     self.track.image = albumArtwork!
                     
                     // Send the notification
