@@ -12,6 +12,7 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var statusMenu: NSMenu!
+    @IBOutlet weak var playPause: NSMenuItem!
     
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
     
@@ -36,6 +37,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             name: spotifyClient + ".PlaybackStateChanged",
             object: nil,
             suspensionBehavior: NSNotificationSuspensionBehavior.DeliverImmediately)
+        NSDistributedNotificationCenter.defaultCenter().addObserver(self,
+            selector: "togglePlayPauseText:",
+            name: spotifyClient + ".PlaybackStateChanged",
+            object: nil,
+            suspensionBehavior: NSNotificationSuspensionBehavior.DeliverImmediately)
     }
     
     func applicationWillTerminate(aNotification: NSNotification) {
@@ -57,6 +63,22 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     // Would like to change the menu item text if we can tell if spotify is playing
     @IBAction func playPauseToggle(sender: NSMenuItem) {
         SystemHelper.sendCommand(Application.Spotify, Command.PlayPause)
+    }
+    
+    /**
+    Toggles the "Play/Pause" button when the player state changes"
+    **/
+    func togglePlayPauseText(notification: NSNotification) {
+        // Assign constant userInfo as type NSDictionary
+        let userInfo: NSDictionary = notification.userInfo!
+        let stateOfPlayer: String = userInfo["Player State"] as! String
+        
+        if (stateOfPlayer == "Playing") {
+            playPause.title = "Pause"
+        }
+        else if (stateOfPlayer == "Paused") {
+            playPause.title = "Play"
+        }
     }
 }
 

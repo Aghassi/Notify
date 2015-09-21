@@ -27,12 +27,6 @@ class SystemHelper {
         return (playerState == "Playing")
     }
     
-    static func spotifyIsRunning() -> Int {
-        let runningAppArray = NSRunningApplication.runningApplicationsWithBundleIdentifier(spotifyClient)
-        NSLog("%@", runningAppArray)
-        return runningAppArray.count
-    }
-    
     /**
     Sends a specific command to an application
     @param app The application to which we should send the command (iTunes, Spotify, etc)
