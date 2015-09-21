@@ -9,5 +9,5 @@
 import Foundation
 
 class SpotifyController: ApplicationController {
-    let application: Application = Application.Spotify
+    let application: Application = .Spotify
 }

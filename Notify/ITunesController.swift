@@ -9,5 +9,5 @@
 import Foundation
 
 class ITunesController: ApplicationController {
-    let application: Application = Application.iTunes
+    let application: Application = .iTunes
 }
