@@ -43,5 +43,31 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     @IBAction func quitClicked(sender: NSMenuItem) {
         NSApplication.sharedApplication().terminate(self)
     }
+    
+    @IBAction func nextTrack(sender: NSMenuItem) {
+        sendSpotifyCommand("next")
+    }
+    
+    @IBAction func prevTrack(sender: NSMenuItem) {
+        sendSpotifyCommand("previous")
+    }
+    
+    func sendSpotifyCommand(command: String) {
+        let script = "tell application \"Spotify\"\n" +
+            command + " track\n" +
+        "end tell"
+        runScript(script)
+    }
+    
+    func runScript(script: String) {
+        var error: NSDictionary?
+        if let scriptObject = NSAppleScript(source: script) {
+            scriptObject.executeAndReturnError(&error)
+            if (error != nil) {
+                NSLog("error: \(error)")
+            }
+        }
+    }
+    
 }
 
