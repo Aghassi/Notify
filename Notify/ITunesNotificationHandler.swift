@@ -29,7 +29,12 @@ class ITunesNotificationHandler: NSObject, NSUserNotificationCenterDelegate, Not
     func setCurrentTrack(info: NSDictionary) {
         // Set the current track
         track.name = info["Name"] as! String
-        track.artist = info["Album Artist"] as! String
+        if let artist = info["Album Artist"] {
+            track.artist = artist as! String
+        }
+        else {
+            track.artist = info["Artist"] as! String
+        }
         track.album = info["Album"] as! String
         
         // Get the album art for the track
