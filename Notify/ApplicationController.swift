@@ -24,14 +24,9 @@ extension ApplicationController {
     @param command The command to be sent (next, playpause, previous etc.)
     **/
     private func sendCommand(app: Application, _ command: Command) {
-        let script = "on is_running(appName)\n" +
-                         "tell application \"System Events\" to (name of processes) contains appName\n" +
-                     "end is_running\n" +
-                     "if is_running(\"" + app.rawValue + "\") then\n" +
-                         "tell application \"" + app.rawValue + "\"\n" +
-                             command.rawValue + " track\n" +
-                         "end tell\n" +
-                     "end if"
+        let script = "tell application \"" + app.rawValue + "\"\n" +
+                        command.rawValue + " track\n" +
+                     "end tell"
         runScript(script)
     }
     

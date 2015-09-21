@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Cocoa
 
 protocol NotificationHandler {
     // The current track being played
@@ -48,5 +49,10 @@ extension NotificationHandler {
             // Remove all the notifications we have delivered
             NSUserNotificationCenter.defaultUserNotificationCenter().removeAllDeliveredNotifications()
         }
+    }
+    
+    func isApplicationRunning() -> Bool {
+        let app = NSRunningApplication.runningApplicationsWithBundleIdentifier(self.client.rawValue)
+        return app.count > 0
     }
 }

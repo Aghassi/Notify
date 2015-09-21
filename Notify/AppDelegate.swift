@@ -72,19 +72,31 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     }
     
     @IBAction func nextTrack(sender: NSMenuItem) {
-        itunes.sendCommand(.Next)
-        spotify.sendCommand(.Next)
+        if (itunesHelper.isApplicationRunning()) {
+            itunes.sendCommand(.Next)
+        }
+        else if (spotifyHelper.isApplicationRunning()) {
+            spotify.sendCommand(.Next)
+        }
     }
     
     @IBAction func prevTrack(sender: NSMenuItem) {
-        itunes.sendCommand(.Previous)
-        spotify.sendCommand(.Previous)
+        if (itunesHelper.isApplicationRunning()) {
+            itunes.sendCommand(.Previous)
+        }
+        else if (spotifyHelper.isApplicationRunning()) {
+            spotify.sendCommand(.Previous)
+        }
     }
     
     // Would like to change the menu item text if we can tell if spotify is playing
     @IBAction func playPauseToggle(sender: NSMenuItem) {
-        itunes.sendCommand(.PlayPause)
-        spotify.sendCommand(.PlayPause)
+        if (itunesHelper.isApplicationRunning()) {
+            itunes.sendCommand(.PlayPause)
+        }
+        else if (spotifyHelper.isApplicationRunning()) {
+            spotify.sendCommand(.PlayPause)
+        }
     }
     
     /**
