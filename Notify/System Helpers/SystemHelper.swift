@@ -14,13 +14,13 @@ import Cocoa
 
 class SystemHelper {
     /*
-    Checks if spotify is currently playing and is not in foreground
+    Checks if an application is currently playing and is not in foreground
     */
-    static func checkPlayerStateIsPlayingAndSpotifyIsNotInForeground(playerState: String) -> Bool {
+    static func checkPlayerStateIsPlayingAndApplicationIsNotInForeground(playerState: String, _ client: Client) -> Bool {
         let foregroundApp: NSRunningApplication = NSWorkspace.sharedWorkspace().frontmostApplication!
         
         // Don't display anything if spotify is in the foreground
-        if (foregroundApp.bundleIdentifier == Client.Spotify.rawValue) {
+        if (foregroundApp.bundleIdentifier == client.rawValue) {
             return false
         }
         

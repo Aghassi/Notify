@@ -10,4 +10,5 @@ import Foundation
 
 enum Client: String {
     case Spotify = "com.spotify.client"
+    case iTunes = "com.apple.iTunes"
 }

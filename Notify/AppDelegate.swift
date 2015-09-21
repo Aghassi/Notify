@@ -17,7 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
     
     // Delivers notifications when the tracks change
-    let helper = NotificationHandler()
+    let helper = ITunesNotificationHandler()
     
     let spotify: ApplicationController = SpotifyController()
 
@@ -36,12 +36,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         // Set observer to when Spotify state changes
         NSDistributedNotificationCenter.defaultCenter().addObserver(helper.self,
             selector: "stateChanged:",
-            name: Client.Spotify.rawValue + ".PlaybackStateChanged",
+            name: Client.iTunes.rawValue + ".playerInfo",
             object: nil,
             suspensionBehavior: NSNotificationSuspensionBehavior.DeliverImmediately)
         NSDistributedNotificationCenter.defaultCenter().addObserver(self,
             selector: "togglePlayPauseText:",
-            name: Client.Spotify.rawValue + ".PlaybackStateChanged",
+            name: Client.iTunes.rawValue + ".playerInfo",
             object: nil,
             suspensionBehavior: NSNotificationSuspensionBehavior.DeliverImmediately)
     }
