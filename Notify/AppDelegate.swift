@@ -13,6 +13,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var statusMenu: NSMenu!
     @IBOutlet weak var playPause: NSMenuItem!
+    let spotify: ApplicationController = SpotifyController()
     
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
     
@@ -53,16 +54,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     }
     
     @IBAction func nextTrack(sender: NSMenuItem) {
-        SystemHelper.sendCommand(Application.Spotify, Command.Next)
+        spotify.sendCommand(Command.Next)
     }
     
     @IBAction func prevTrack(sender: NSMenuItem) {
-        SystemHelper.sendCommand(Application.Spotify, Command.Previous)
+        spotify.sendCommand(Command.Previous)
     }
     
     // Would like to change the menu item text if we can tell if spotify is playing
     @IBAction func playPauseToggle(sender: NSMenuItem) {
-        SystemHelper.sendCommand(Application.Spotify, Command.PlayPause)
+        spotify.sendCommand(Command.PlayPause)
     }
     
     /**
