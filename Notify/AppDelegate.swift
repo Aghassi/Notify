@@ -33,7 +33,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         // Set observer to when Spotify state changes
         NSDistributedNotificationCenter.defaultCenter().addObserver(helper.self,
             selector: "stateChanged:",
-            name: "com.spotify.client.PlaybackStateChanged",
+            name: spotifyClient + ".PlaybackStateChanged",
             object: nil,
             suspensionBehavior: NSNotificationSuspensionBehavior.DeliverImmediately)
     }

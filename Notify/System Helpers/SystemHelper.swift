@@ -20,11 +20,17 @@ class SystemHelper {
         let foregroundApp: NSRunningApplication = NSWorkspace.sharedWorkspace().frontmostApplication!
         
         // Don't display anything if spotify is in the foreground
-        if (foregroundApp.bundleIdentifier == "com.spotify.client") {
+        if (foregroundApp.bundleIdentifier == spotifyClient) {
             return false
         }
         
         return (playerState == "Playing")
+    }
+    
+    static func spotifyIsRunning() -> Int {
+        let runningAppArray = NSRunningApplication.runningApplicationsWithBundleIdentifier(spotifyClient)
+        NSLog("%@", runningAppArray)
+        return runningAppArray.count
     }
     
     /**

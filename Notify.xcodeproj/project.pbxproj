@@ -17,6 +17,7 @@
 		D41E988F1BAC6CAB00C0B101 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D41E988E1BAC6CAB00C0B101 /* Assets.xcassets */; };
 		D41E989D1BAC6CAB00C0B101 /* NotifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41E989C1BAC6CAB00C0B101 /* NotifyTests.swift */; };
 		D41E98A81BAC6CAB00C0B101 /* NotifyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41E98A71BAC6CAB00C0B101 /* NotifyUITests.swift */; };
+		D4A857381BB07FD100B3AA5D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A857371BB07FD100B3AA5D /* Constants.swift */; settings = {ASSET_TAGS = (); }; };
 		D4B98ACC1BAE3BC0006EC82F /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B98ACB1BAE3BC0006EC82F /* Song.swift */; settings = {ASSET_TAGS = (); }; };
 		D4B98AD01BAE3EBB006EC82F /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B98ACF1BAE3EBB006EC82F /* NotificationHandler.swift */; settings = {ASSET_TAGS = (); }; };
 		D4B98AD51BAE5192006EC82F /* SystemHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B98AD41BAE5192006EC82F /* SystemHelper.swift */; settings = {ASSET_TAGS = (); }; };
@@ -154,6 +155,7 @@
 		D41E98A31BAC6CAB00C0B101 /* NotifyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NotifyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D41E98A71BAC6CAB00C0B101 /* NotifyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyUITests.swift; sourceTree = "<group>"; };
 		D41E98A91BAC6CAB00C0B101 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4A857371BB07FD100B3AA5D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = "System Helpers/Constants.swift"; sourceTree = "<group>"; };
 		D4B98ACB1BAE3BC0006EC82F /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Song.swift; path = Objects/Song.swift; sourceTree = "<group>"; };
 		D4B98ACF1BAE3EBB006EC82F /* NotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationHandler.swift; path = Handlers/NotificationHandler.swift; sourceTree = "<group>"; };
 		D4B98AD41BAE5192006EC82F /* SystemHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SystemHelper.swift; path = "System Helpers/SystemHelper.swift"; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 		D4B98AD11BAE5167006EC82F /* System Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				D4A857371BB07FD100B3AA5D /* Constants.swift */,
 				D4B98AD41BAE5192006EC82F /* SystemHelper.swift */,
 			);
 			name = "System Helpers";
@@ -507,6 +510,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64FEFE541BB07D81005D3587 /* Application.swift in Sources */,
+				D4A857381BB07FD100B3AA5D /* Constants.swift in Sources */,
 				D4B98ACC1BAE3BC0006EC82F /* Song.swift in Sources */,
 				D4B98AD51BAE5192006EC82F /* SystemHelper.swift in Sources */,
 				D4B98AD01BAE3EBB006EC82F /* NotificationHandler.swift in Sources */,
