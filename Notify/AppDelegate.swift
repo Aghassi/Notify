@@ -11,13 +11,14 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
     @IBOutlet weak var window: NSWindow!
-    let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-2)
+    let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
     
     let helper = NotificationHandler()
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         if let button = statusItem.button {
             button.image = NSImage(named: "statusIcon")
+            button.image?.template = true   // sets the icon to inverted color for dark mode
             button.action = Selector("printQuote:")
         }
         
