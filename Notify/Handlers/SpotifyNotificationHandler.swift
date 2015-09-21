@@ -15,24 +15,14 @@ import SwiftyJSON
 
 class SpotifyNotificationHandler: NSObject, NSUserNotificationCenterDelegate, NotificationHandler {
     let track = Song()
+    let client: Client = .Spotify
     
     /**
     Called when the application changes its playback state
     @param notification, an NSNotification passed in when state changes
     **/
-    func stateChanged(notification: NSNotification) {
-        // Assign constant userInfo as type NSDictionary
-        let userInfo: NSDictionary = notification.userInfo!
-        let stateOfPlayer: String = userInfo["Player State"] as! String
-        
-        if (SystemHelper.checkPlayerStateIsPlayingAndApplicationIsNotInForeground(stateOfPlayer, Client.Spotify)) {
-            // Set the current track
-            self.setCurrentTrack(userInfo)
-        }
-        else {
-            // Remove all the notifications we have delivered
-            NSUserNotificationCenter.defaultUserNotificationCenter().removeAllDeliveredNotifications()
-        }
+    func spotifyStateChanged(notification: NSNotification) {
+        self.stateChanged(notification)
     }
 
     

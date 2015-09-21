@@ -11,6 +11,7 @@ import Foundation
 protocol NotificationHandler {
     // The current track being played
     var track: Song { get }
+    var client: Client { get }
     func setCurrentTrack(info: NSDictionary)
     func stateChanged(notification: NSNotification)
 }
@@ -28,5 +29,24 @@ extension NotificationHandler {
         
         //Deliver Notification to user
         NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(notification)
+    }
+    
+    /**
+    Called when the application changes its playback state
+    @param notification, an NSNotification passed in when state changes
+    **/
+    func stateChanged(notification: NSNotification) {
+        // Assign constant userInfo as type NSDictionary
+        let userInfo: NSDictionary = notification.userInfo!
+        let stateOfPlayer: String = userInfo["Player State"] as! String
+        
+        if (SystemHelper.checkPlayerStateIsPlayingAndApplicationIsNotInForeground(stateOfPlayer, self.client)) {
+            // Set the current track
+            self.setCurrentTrack(userInfo)
+        }
+        else {
+            // Remove all the notifications we have delivered
+            NSUserNotificationCenter.defaultUserNotificationCenter().removeAllDeliveredNotifications()
+        }
     }
 }

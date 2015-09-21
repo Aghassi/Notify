@@ -13,24 +13,14 @@ import SwiftyJSON
 
 class ITunesNotificationHandler: NSObject, NSUserNotificationCenterDelegate, NotificationHandler {
     let track = Song()
+    let client: Client = .iTunes
     
     /**
     Called when the application changes its playback state
     @param notification, an NSNotification passed in when state changes
     **/
-    func stateChanged(notification: NSNotification) {
-        // Assign constant userInfo as type NSDictionary
-        let userInfo: NSDictionary = notification.userInfo!
-        let stateOfPlayer: String = userInfo["Player State"] as! String
-        
-        if (SystemHelper.checkPlayerStateIsPlayingAndApplicationIsNotInForeground(stateOfPlayer, Client.iTunes)) {
-            // Set the current track
-            self.setCurrentTrack(userInfo)
-        }
-        else {
-            // Remove all the notifications we have delivered
-            NSUserNotificationCenter.defaultUserNotificationCenter().removeAllDeliveredNotifications()
-        }
+    func iTunesStateChanged(notification: NSNotification) {
+        self.stateChanged(notification)
     }
     
     /**********************

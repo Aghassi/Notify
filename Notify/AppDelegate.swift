@@ -37,7 +37,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         NSUserNotificationCenter.defaultUserNotificationCenter().delegate = spotifyHelper
         // Set observer to when Spotify state changes
         NSDistributedNotificationCenter.defaultCenter().addObserver(spotifyHelper.self,
-            selector: "stateChanged:",
+            selector: "spotifyStateChanged:",
             name: Client.Spotify.rawValue + "." + PlaybackChanged.Spotify.rawValue,
             object: nil,
             suspensionBehavior: NSNotificationSuspensionBehavior.DeliverImmediately)
@@ -51,7 +51,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         NSUserNotificationCenter.defaultUserNotificationCenter().delegate = itunesHelper
         // Set observer to when Spotify state changes
         NSDistributedNotificationCenter.defaultCenter().addObserver(itunesHelper.self,
-            selector: "stateChanged:",
+            selector: "iTunesStateChanged:",
             name: Client.iTunes.rawValue + "." + PlaybackChanged.iTunes.rawValue,
             object: nil,
             suspensionBehavior: NSNotificationSuspensionBehavior.DeliverImmediately)
