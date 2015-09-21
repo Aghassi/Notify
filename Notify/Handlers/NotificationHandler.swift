@@ -55,6 +55,7 @@ class NotificationHandler: NSObject, NSUserNotificationCenterDelegate {
             notificationToDeliver.subtitle = track.album
             notificationToDeliver.informativeText = track.artist
             notificationToDeliver.contentImage = track.image
+            notificationToDeliver.hasActionButton = false
             
             //Deliver Notification to user
             NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(notificationToDeliver)
