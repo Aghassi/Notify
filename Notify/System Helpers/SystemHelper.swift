@@ -28,13 +28,14 @@ class SystemHelper {
     }
     
     /**
-    Sends a specific command to spotify
-    @param command the command to be sent (next, play, pause, back etc.)
+    Sends a specific command to an application
+    @param app The application to which we should send the command (iTunes, Spotify, etc)
+    @param command The command to be sent (next, playpause, previous etc.)
     **/
-    static func sendSpotifyCommand(command: String) {
-        let script = "tell application \"Spotify\"\n" +
-            command + " track\n" +
-        "end tell"
+    static func sendCommand(app: Application, _ command: Command) {
+        let script = "tell application \"" + app.rawValue + "\"\n" +
+                          command.rawValue + " track\n" +
+                     "end tell"
         runScript(script)
     }
     
