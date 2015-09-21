@@ -52,6 +52,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         sendSpotifyCommand("previous")
     }
     
+    // Would like to change the menu item text if we can tell if spotify is playing
+    @IBAction func playPauseToggle(sender: NSMenuItem) {
+        sendSpotifyCommand("playpause")
+    }
+    
     func sendSpotifyCommand(command: String) {
         let script = "tell application \"Spotify\"\n" +
             command + " track\n" +
