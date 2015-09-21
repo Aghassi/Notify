@@ -24,6 +24,11 @@
 		D4B98ACC1BAE3BC0006EC82F /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B98ACB1BAE3BC0006EC82F /* Song.swift */; settings = {ASSET_TAGS = (); }; };
 		D4B98AD01BAE3EBB006EC82F /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B98ACF1BAE3EBB006EC82F /* NotificationHandler.swift */; settings = {ASSET_TAGS = (); }; };
 		D4B98AD51BAE5192006EC82F /* SystemHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B98AD41BAE5192006EC82F /* SystemHelper.swift */; settings = {ASSET_TAGS = (); }; };
+		D4D04CD51BB0AEEA004C9326 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D04CD41BB0AEEA004C9326 /* NotificationCenter.framework */; settings = {ASSET_TAGS = (); }; };
+		D4D04CDA1BB0AEEB004C9326 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D04CD91BB0AEEB004C9326 /* TodayViewController.swift */; };
+		D4D04CDD1BB0AEEB004C9326 /* TodayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4D04CDB1BB0AEEB004C9326 /* TodayViewController.xib */; };
+		D4D04CE11BB0AEEB004C9326 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4D04CDF1BB0AEEB004C9326 /* InfoPlist.strings */; };
+		D4D04CE41BB0AEEB004C9326 /* NCWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D4D04CD21BB0AEEA004C9326 /* NCWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D4E333861BAF75E1001938E6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E333841BAF75E1001938E6 /* MainMenu.xib */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -126,6 +131,13 @@
 			remoteGlobalIDString = D41E98861BAC6CAB00C0B101;
 			remoteInfo = Notify;
 		};
+		D4D04CE21BB0AEEB004C9326 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41E987F1BAC6CAB00C0B101 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D4D04CD11BB0AEEA004C9326;
+			remoteInfo = NCWidget;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -139,6 +151,17 @@
 				3BF2FD0E1BAF652F00C5A133 /* Alamofire.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4D04CF01BB0AEEB004C9326 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D4D04CE41BB0AEEB004C9326 /* NCWidget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -165,6 +188,13 @@
 		D4B98ACB1BAE3BC0006EC82F /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Song.swift; path = Objects/Song.swift; sourceTree = "<group>"; };
 		D4B98ACF1BAE3EBB006EC82F /* NotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationHandler.swift; path = Handlers/NotificationHandler.swift; sourceTree = "<group>"; };
 		D4B98AD41BAE5192006EC82F /* SystemHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SystemHelper.swift; path = "System Helpers/SystemHelper.swift"; sourceTree = "<group>"; };
+		D4D04CD21BB0AEEA004C9326 /* NCWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NCWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4D04CD41BB0AEEA004C9326 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		D4D04CD81BB0AEEB004C9326 /* NCWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = NCWidget.entitlements; sourceTree = "<group>"; };
+		D4D04CD91BB0AEEB004C9326 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		D4D04CDC1BB0AEEB004C9326 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TodayViewController.xib; sourceTree = "<group>"; };
+		D4D04CDE1BB0AEEB004C9326 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4D04CE01BB0AEEB004C9326 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D4E333851BAF75E1001938E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -189,6 +219,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4D04CCF1BB0AEEA004C9326 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4D04CD51BB0AEEA004C9326 /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +283,8 @@
 				D41E98891BAC6CAB00C0B101 /* Notify */,
 				D41E989B1BAC6CAB00C0B101 /* NotifyTests */,
 				D41E98A61BAC6CAB00C0B101 /* NotifyUITests */,
+				D4D04CD61BB0AEEA004C9326 /* NCWidget */,
+				D4D04CD31BB0AEEA004C9326 /* Frameworks */,
 				D41E98881BAC6CAB00C0B101 /* Products */,
 				3BF2FCF61BAF652400C5A133 /* SwiftyJSON.xcodeproj */,
 				3BF2FCC01BAF64CC00C5A133 /* Alamofire.xcodeproj */,
@@ -257,6 +297,7 @@
 				D41E98871BAC6CAB00C0B101 /* Notify.app */,
 				D41E98981BAC6CAB00C0B101 /* NotifyTests.xctest */,
 				D41E98A31BAC6CAB00C0B101 /* NotifyUITests.xctest */,
+				D4D04CD21BB0AEEA004C9326 /* NCWidget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -319,6 +360,34 @@
 			name = "System Helpers";
 			sourceTree = "<group>";
 		};
+		D4D04CD31BB0AEEA004C9326 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D4D04CD41BB0AEEA004C9326 /* NotificationCenter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D4D04CD61BB0AEEA004C9326 /* NCWidget */ = {
+			isa = PBXGroup;
+			children = (
+				D4D04CD91BB0AEEB004C9326 /* TodayViewController.swift */,
+				D4D04CDB1BB0AEEB004C9326 /* TodayViewController.xib */,
+				D4D04CDE1BB0AEEB004C9326 /* Info.plist */,
+				D4D04CDF1BB0AEEB004C9326 /* InfoPlist.strings */,
+				D4D04CD71BB0AEEB004C9326 /* Supporting Files */,
+			);
+			path = NCWidget;
+			sourceTree = "<group>";
+		};
+		D4D04CD71BB0AEEB004C9326 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D4D04CD81BB0AEEB004C9326 /* NCWidget.entitlements */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -330,12 +399,14 @@
 				D41E98841BAC6CAB00C0B101 /* Frameworks */,
 				D41E98851BAC6CAB00C0B101 /* Resources */,
 				3BF2FD0C1BAF652B00C5A133 /* Embed Frameworks */,
+				D4D04CF01BB0AEEB004C9326 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				3BF2FD0B1BAF652B00C5A133 /* PBXTargetDependency */,
 				3BF2FD101BAF652F00C5A133 /* PBXTargetDependency */,
+				D4D04CE31BB0AEEB004C9326 /* PBXTargetDependency */,
 			);
 			name = Notify;
 			productName = Notify;
@@ -378,6 +449,23 @@
 			productReference = D41E98A31BAC6CAB00C0B101 /* NotifyUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		D4D04CD11BB0AEEA004C9326 /* NCWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4D04CEF1BB0AEEB004C9326 /* Build configuration list for PBXNativeTarget "NCWidget" */;
+			buildPhases = (
+				D4D04CCE1BB0AEEA004C9326 /* Sources */,
+				D4D04CCF1BB0AEEA004C9326 /* Frameworks */,
+				D4D04CD01BB0AEEA004C9326 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NCWidget;
+			productName = NCWidget;
+			productReference = D4D04CD21BB0AEEA004C9326 /* NCWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -397,6 +485,9 @@
 					D41E98A21BAC6CAB00C0B101 = {
 						CreatedOnToolsVersion = 7.0;
 						TestTargetID = D41E98861BAC6CAB00C0B101;
+					};
+					D4D04CD11BB0AEEA004C9326 = {
+						CreatedOnToolsVersion = 7.0;
 					};
 				};
 			};
@@ -426,6 +517,7 @@
 				D41E98861BAC6CAB00C0B101 /* Notify */,
 				D41E98971BAC6CAB00C0B101 /* NotifyTests */,
 				D41E98A21BAC6CAB00C0B101 /* NotifyUITests */,
+				D4D04CD11BB0AEEA004C9326 /* NCWidget */,
 			);
 		};
 /* End PBXProject section */
@@ -527,6 +619,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D4D04CD01BB0AEEA004C9326 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4D04CDD1BB0AEEB004C9326 /* TodayViewController.xib in Resources */,
+				D4D04CE11BB0AEEB004C9326 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -563,6 +664,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D4D04CCE1BB0AEEA004C9326 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4D04CDA1BB0AEEB004C9326 /* TodayViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -586,9 +695,30 @@
 			target = D41E98861BAC6CAB00C0B101 /* Notify */;
 			targetProxy = D41E98A41BAC6CAB00C0B101 /* PBXContainerItemProxy */;
 		};
+		D4D04CE31BB0AEEB004C9326 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D4D04CD11BB0AEEA004C9326 /* NCWidget */;
+			targetProxy = D4D04CE21BB0AEEB004C9326 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		D4D04CDB1BB0AEEB004C9326 /* TodayViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4D04CDC1BB0AEEB004C9326 /* Base */,
+			);
+			name = TodayViewController.xib;
+			sourceTree = "<group>";
+		};
+		D4D04CDF1BB0AEEB004C9326 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4D04CE01BB0AEEB004C9326 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		D4E333841BAF75E1001938E6 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -760,6 +890,36 @@
 			};
 			name = Release;
 		};
+		D4D04CE51BB0AEEB004C9326 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = NCWidget/NCWidget.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = NCWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = aghassi.Notify.NCWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		D4D04CE61BB0AEEB004C9326 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = NCWidget/NCWidget.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = NCWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = aghassi.Notify.NCWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -798,6 +958,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		D4D04CEF1BB0AEEB004C9326 /* Build configuration list for PBXNativeTarget "NCWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4D04CE51BB0AEEB004C9326 /* Debug */,
+				D4D04CE61BB0AEEB004C9326 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
