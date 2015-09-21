@@ -26,4 +26,30 @@ class SystemHelper {
         
         return (playerState == "Playing")
     }
+    
+    /**
+    Sends a specific command to spotify
+    @param command the command to be sent (next, play, pause, back etc.)
+    **/
+    static func sendSpotifyCommand(command: String) {
+        let script = "tell application \"Spotify\"\n" +
+            command + " track\n" +
+        "end tell"
+        runScript(script)
+    }
+    
+    /**
+    Runs an apple script for the string passed in
+    @param script A string representing the script to be run
+    **/
+    static func runScript(script: String) {
+        var error: NSDictionary?
+        if let scriptObject = NSAppleScript(source: script) {
+            scriptObject.executeAndReturnError(&error)
+            if (error != nil) {
+                NSLog("error: \(error)")
+            }
+        }
+    }
+
 }

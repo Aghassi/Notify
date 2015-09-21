@@ -15,9 +15,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
     
+    // Delivers notifications when the tracks change
     let helper = NotificationHandler()
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
+        // Set statusbar icon
         if let button = statusItem.button {
             button.image = NSImage(named: "statusIcon")
             button.image?.template = true   // sets the icon to inverted color for dark mode
@@ -45,34 +47,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     }
     
     @IBAction func nextTrack(sender: NSMenuItem) {
-        sendSpotifyCommand("next")
+        SystemHelper.sendSpotifyCommand("next")
     }
     
     @IBAction func prevTrack(sender: NSMenuItem) {
-        sendSpotifyCommand("previous")
+        SystemHelper.sendSpotifyCommand("previous")
     }
     
     // Would like to change the menu item text if we can tell if spotify is playing
     @IBAction func playPauseToggle(sender: NSMenuItem) {
-        sendSpotifyCommand("playpause")
+        SystemHelper.sendSpotifyCommand("playpause")
     }
-    
-    func sendSpotifyCommand(command: String) {
-        let script = "tell application \"Spotify\"\n" +
-            command + " track\n" +
-        "end tell"
-        runScript(script)
-    }
-    
-    func runScript(script: String) {
-        var error: NSDictionary?
-        if let scriptObject = NSAppleScript(source: script) {
-            scriptObject.executeAndReturnError(&error)
-            if (error != nil) {
-                NSLog("error: \(error)")
-            }
-        }
-    }
-    
 }
 

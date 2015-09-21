@@ -55,6 +55,8 @@ class NotificationHandler: NSObject, NSUserNotificationCenterDelegate {
             notificationToDeliver.subtitle = track.album
             notificationToDeliver.informativeText = track.artist
             notificationToDeliver.contentImage = track.image
+            
+            // If set as Alert, there will only be a close button
             notificationToDeliver.hasActionButton = false
             
             //Deliver Notification to user
