@@ -75,6 +75,9 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="fastForwardButton:" target="-2" id="MO7-Ns-noF"/>
+                    </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="m9z-o5-5Ve">
                     <rect key="frame" x="84" y="20" width="37" height="33"/>
@@ -87,6 +90,9 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="rewindButton:" target="-2" id="iO6-oX-G5D"/>
+                    </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tXh-VY-oKb">
                     <rect key="frame" x="129" y="20" width="32" height="33"/>
