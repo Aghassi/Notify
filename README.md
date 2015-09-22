@@ -1,5 +1,13 @@
 # Notify
-A status bar app for OS X that delivers notifications for Spotify when songs change.
+A status bar app for OS X that delivers notifications for Spotify or iTunes when songs change.
+
+## Functionality
+You can play or pause music, skip to the next song, or go back to the previous song. When a new song begins playing, Notify will create a new OSX notification containing the song, album, and artist. If album art is available, it is included in the notification
+
+## Compatibility
+Spotify  
+iTunes  
+Mac OSX 10.10
 
 ### Example Notification
 <p align="center">
