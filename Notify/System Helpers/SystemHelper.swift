@@ -27,7 +27,9 @@ class SystemHelper {
         return (playerState == "Playing")
     }
     
-    // Adding the delegate parameter is a dirty hack because calling AppDelegate.self did not work
+    /*
+    Add an observer to an event for an application
+    */
     static func addObserver(helper: AnyObject, selector: Selector, client: Client, event: PlaybackChanged) {
         // Set observer to when the application state changes
         NSDistributedNotificationCenter.defaultCenter().addObserver(helper.self,
