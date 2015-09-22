@@ -26,4 +26,16 @@ class SystemHelper {
         
         return (playerState == "Playing")
     }
+    
+    /*
+    Add an observer to an event for an application
+    */
+    static func addObserver(helper: AnyObject, selector: Selector, client: Client, event: PlaybackChanged) {
+        // Set observer to when the application state changes
+        NSDistributedNotificationCenter.defaultCenter().addObserver(helper.self,
+            selector: selector,
+            name: client.rawValue + "." + event.rawValue,
+            object: nil,
+            suspensionBehavior: NSNotificationSuspensionBehavior.DeliverImmediately)
+    }
 }

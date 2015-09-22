@@ -29,38 +29,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             button.image = NSImage(named: "statusIcon")
             button.image?.template = true   // sets the icon to inverted color for dark mode
             button.action = Selector("quitClicked:")
-            
             statusItem.menu = statusMenu
         }
         
-        // Set up Spotify listeners
-        NSUserNotificationCenter.defaultUserNotificationCenter().delegate = spotifyHelper
         // Set observer to when Spotify state changes
-        NSDistributedNotificationCenter.defaultCenter().addObserver(spotifyHelper.self,
-            selector: "spotifyStateChanged:",
-            name: Client.Spotify.rawValue + "." + PlaybackChanged.Spotify.rawValue,
-            object: nil,
-            suspensionBehavior: NSNotificationSuspensionBehavior.DeliverImmediately)
-        NSDistributedNotificationCenter.defaultCenter().addObserver(self,
-            selector: "togglePlayPauseText:",
-            name: Client.Spotify.rawValue + "." + PlaybackChanged.Spotify.rawValue,
-            object: nil,
-            suspensionBehavior: NSNotificationSuspensionBehavior.DeliverImmediately)
+        SystemHelper.addObserver(spotifyHelper, selector: "spotifyStateChanged:", client: .Spotify, event: .Spotify)
+        SystemHelper.addObserver(self, selector: "togglePlayPauseText:", client: .Spotify, event: .Spotify)
         
-        // Set up iTunes listeners
-        NSUserNotificationCenter.defaultUserNotificationCenter().delegate = itunesHelper
-        // Set observer to when Spotify state changes
-        NSDistributedNotificationCenter.defaultCenter().addObserver(itunesHelper.self,
-            selector: "iTunesStateChanged:",
-            name: Client.iTunes.rawValue + "." + PlaybackChanged.iTunes.rawValue,
-            object: nil,
-            suspensionBehavior: NSNotificationSuspensionBehavior.DeliverImmediately)
-        NSDistributedNotificationCenter.defaultCenter().addObserver(self,
-            selector: "togglePlayPauseText:",
-            name: Client.iTunes.rawValue + "." + PlaybackChanged.iTunes.rawValue,
-            object: nil,
-            suspensionBehavior: NSNotificationSuspensionBehavior.DeliverImmediately)
-        
+        // Set observer to when iTunes state changes
+        SystemHelper.addObserver(itunesHelper, selector: "iTunesStateChanged:", client: .iTunes, event: .iTunes)
+        SystemHelper.addObserver(self, selector: "togglePlayPauseText:", client: .iTunes, event: .iTunes)
     }
     
     func applicationWillTerminate(aNotification: NSNotification) {

@@ -13,7 +13,7 @@ import Cocoa
 import Alamofire
 import SwiftyJSON
 
-class SpotifyNotificationHandler: NSObject, NSUserNotificationCenterDelegate, NotificationHandler {
+class SpotifyNotificationHandler: NSObject, NotificationHandler {
     var track = Song()
     let client: Client = .Spotify
     
