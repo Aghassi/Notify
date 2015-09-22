@@ -39,9 +39,11 @@ class ITunesNotificationHandler: NSObject, NSUserNotificationCenterDelegate, Not
         
         // Get the album art for the track
         let storeUrl = info["Store URL"] as! String
+        NSLog("%@", info)
         let albumId = getQueryStringParameter(storeUrl, param: "p")
         if (albumId != nil) {
             let itunesApiUrl = "https://itunes.apple.com/lookup?id=" + albumId!
+            NSLog("%@", itunesApiUrl)
             Alamofire.request(.GET, itunesApiUrl, parameters: nil)
                 .responseJSON { (req, res, result) in
                     if (result.isFailure) {
@@ -49,10 +51,14 @@ class ITunesNotificationHandler: NSObject, NSUserNotificationCenterDelegate, Not
                     }
                     else {
                         var json = JSON(result.value!)
-                        // Get the album art. Size doesn't matter.
-                        let albumArtworkUrl: NSURL = NSURL(string: json["results"][0]["artworkUrl100"].stringValue)!
-                        let albumArtwork = NSImage(contentsOfURL: albumArtworkUrl)
-                        self.track.image = albumArtwork!
+                        if (json["resultCount"] > 0) {
+                            // Get the album art. Size doesn't matter.
+                            let albumArtworkUrl: NSURL = NSURL(string: json["results"][0]["artworkUrl100"].stringValue)!
+                            let albumArtwork = NSImage(contentsOfURL: albumArtworkUrl)
+                            if (albumArtwork != nil) {
+                                self.track.image = albumArtwork!
+                            }
+                        }
                     
                         // Send the notification
                         self.sendNotification()
