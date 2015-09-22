@@ -44,40 +44,38 @@ class ITunesNotificationHandler: NSObject, NSUserNotificationCenterDelegate, Not
         }
         
         // Get the album art for the track
-        let storeUrl = info["Store URL"] as! String
-        let albumId = getQueryStringParameter(storeUrl, param: "p")
-        if (albumId != nil) {
-            let itunesApiUrl = "https://itunes.apple.com/lookup?id=" + albumId!
-            Alamofire.request(.GET, itunesApiUrl, parameters: nil)
+        if (!track.artist.isEmpty && !track.album.isEmpty) {
+            let itunesApiUrl = "https://itunes.apple.com/search"
+            let parameters = ["term": track.album, "attribute": "albumTerm", "entity": "album"]
+            Alamofire.request(.GET, itunesApiUrl, parameters: parameters)
                 .responseJSON { (req, res, result) in
                     if (result.isFailure) {
                         NSLog("Error: \(result.error)")
                     }
                     else {
                         var json = JSON(result.value!)
-                        if (json["resultCount"] > 0) {
-                            // Get the album art. Size doesn't matter.
-                            let albumArtworkUrl: NSURL = NSURL(string: json["results"][0]["artworkUrl100"].stringValue)!
-                            let albumArtwork = NSImage(contentsOfURL: albumArtworkUrl)
-                            if (albumArtwork != nil) {
-                                self.track.image = albumArtwork!
+                        if (json["resultCount"].intValue > 0) {
+                            for i in 0..<json["results"].count {
+                                let albumJson = json["results"][i]
+                                if (albumJson["artistName"].stringValue == self.track.artist) {
+                                    // Get the album art. Size doesn't matter.
+                                    let albumArtworkUrl: NSURL = NSURL(string: albumJson["artworkUrl100"].stringValue)!
+                                    let albumArtwork = NSImage(contentsOfURL: albumArtworkUrl)
+                                    if (albumArtwork != nil) {
+                                        self.track.image = albumArtwork!
+                                    }
+                                    break
+                                }
                             }
                         }
-                    
-                        // Send the notification
-                        self.sendNotification()
                     }
-            }
+                    
+                    // Send the notification
+                    self.sendNotification()
+                }
         }
         else {
             sendNotification()
         }
-    }
-    
-    func getQueryStringParameter(url: String, param: String) -> String? {
-        if let urlComponents = NSURLComponents(string: url), queryItems = (urlComponents.queryItems as [NSURLQueryItem]?) {
-            return queryItems.filter({ (item) in item.name == param }).first?.value!
-        }
-        return nil
     }
 }
