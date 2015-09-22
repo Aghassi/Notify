@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "mac",
-      "filename" : "Spotify-24.png",
+      "filename" : "icon_24x24.png",
       "scale" : "1x"
     },
     {
       "idiom" : "mac",
-      "filename" : "Spotify-48.png",
+      "filename" : "icon_24x24@2x.png",
       "scale" : "2x"
     }
   ],
