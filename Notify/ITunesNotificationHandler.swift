@@ -47,7 +47,6 @@ class ITunesNotificationHandler: NSObject, NSUserNotificationCenterDelegate, Not
         let storeUrl = info["Store URL"] as! String
         let albumId = getQueryStringParameter(storeUrl, param: "p")
         if (albumId != nil) {
-            NSLog("%@", info)
             let itunesApiUrl = "https://itunes.apple.com/lookup?id=" + albumId!
             Alamofire.request(.GET, itunesApiUrl, parameters: nil)
                 .responseJSON { (req, res, result) in
