@@ -1,10 +1,8 @@
 //
-//  NotificationHandler.swift
-//  Type: Object and Delegate of NSUserNotificationCenter
-//
+//  ITunesNotificationHandler.swift
 //  Notify
 //
-//  Created by David Aghassi on 9/19/15.
+//  Created by Chris Rees on 9/21/15.
 //  Copyright © 2015 David Aghassi. All rights reserved.
 //
 
@@ -13,93 +11,71 @@ import Cocoa
 import Alamofire
 import SwiftyJSON
 
-class NotificationHandler: NSObject, NSUserNotificationCenterDelegate {
-    // The current track being played
-    var track: Song
-    // Previous trackID
-    var previousTrackID: String
-    
-    override init() {
-        // Set properties
-        track = Song()
-        previousTrackID = ""
-        
-        super.init()
-    }
+class ITunesNotificationHandler: NSObject, NotificationHandler {
+    var track = Song()
+    let client: Client = .iTunes
     
     /**
-    Called when Spotify changes it's playback state
+    Called when the application changes its playback state
     @param notification, an NSNotification passed in when state changes
     **/
-    func stateChanged(notification: NSNotification) {
-        // Assign constant userInfo as type NSDictionary
-        let userInfo: NSDictionary = notification.userInfo!
-        let stateOfPlayer: String = userInfo["Player State"] as! String
-        
-        if (SystemHelper.checkPlayerStateIsPlayingAndSpotifyIsNotInForeground(stateOfPlayer)) {
-            // Set the current track
-            setCurrentTrack(userInfo)
-        }
-        else {
-            // Remove all the notifications we have delivered
-            NSUserNotificationCenter.defaultUserNotificationCenter().removeAllDeliveredNotifications()
-        }
-    }
-    
-    func sendNotification() {
-        // Only send a notification if the "track" is not an ad.
-        // This doesn't seem necessary, but it's better to check
-        if (!track.album.hasPrefix("http")) {
-            let notificationToDeliver: NSUserNotification = NSUserNotification()
-            notificationToDeliver.title = track.name
-            notificationToDeliver.subtitle = track.album
-            notificationToDeliver.informativeText = track.artist
-            notificationToDeliver.contentImage = track.image
-            
-            // If set as Alert, there will only be a close button
-            notificationToDeliver.hasActionButton = false
-            
-            //Deliver Notification to user
-            NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(notificationToDeliver)
-        }
-
+    func iTunesStateChanged(notification: NSNotification) {
+        self.stateChanged(notification)
     }
     
     /**********************
     * Getters and Setters *
     **********************/
     func setCurrentTrack(info: NSDictionary) {
-        // Set the prior trackID for when we playback previous
-        previousTrackID = track.trackID
+        // Reset to no data
+        track = Song()
         
         // Set the current track
         track.name = info["Name"] as! String
-        track.artist = info["Artist"] as! String
-        track.album = info["Album"] as! String
+        if let albumArtist = info["Album Artist"] {
+            track.artist = albumArtist as! String
+        }
+        else if let artist = info["Artist"] {
+            track.artist = artist as! String
+        }
         
-        // We receive values like spotify:track:0QXPKOlwGXrEUId6H1Eyxa. We just need the last section
-        let fullId = info["Track ID"] as! String
-        track.trackID = fullId.componentsSeparatedByString(":")[2]
+        if let album = info["Album"] {
+            track.album = album as! String
+        }
         
         // Get the album art for the track
-        let spotifyApiUrl = "https://api.spotify.com/v1/tracks/" + track.trackID
-        Alamofire.request(.GET, spotifyApiUrl, parameters: nil)
-            .responseJSON { (req, res, result) in
-                if (result.isFailure) {
-                    NSLog("Error: \(result.error)")
-                }
-                else {
-                    var json = JSON(result.value!)
-                    // Get the album art. Size doesn't matter.
-                    var image = json["album"]["images"][0]
-                    let albumArtworkUrl: NSURL = NSURL(string: image["url"].stringValue)!
-                    let albumArtwork = NSImage(contentsOfURL: albumArtworkUrl)
-                    self.track.image = albumArtwork!
+        if (!track.artist.isEmpty && !track.album.isEmpty) {
+            let itunesApiUrl = "https://itunes.apple.com/search"
+            let parameters = ["term": track.album, "attribute": "albumTerm", "entity": "album"]
+            Alamofire.request(.GET, itunesApiUrl, parameters: parameters)
+                .responseJSON { (req, res, result) in
+                    if (result.isFailure) {
+                        NSLog("Error: \(result.error)")
+                    }
+                    else {
+                        var json = JSON(result.value!)
+                        if (json["resultCount"].intValue > 0) {
+                            for i in 0..<json["results"].count {
+                                let albumJson = json["results"][i]
+                                if (albumJson["artistName"].stringValue == self.track.artist) {
+                                    // Get the album art. Size doesn't matter.
+                                    let albumArtworkUrl: NSURL = NSURL(string: albumJson["artworkUrl100"].stringValue)!
+                                    let albumArtwork = NSImage(contentsOfURL: albumArtworkUrl)
+                                    if (albumArtwork != nil) {
+                                        self.track.image = albumArtwork!
+                                    }
+                                    break
+                                }
+                            }
+                        }
+                    }
                     
                     // Send the notification
                     self.sendNotification()
                 }
         }
+        else {
+            sendNotification()
+        }
     }
-
 }
