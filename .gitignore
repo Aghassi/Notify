@@ -27,3 +27,6 @@ xcuserdata
 
 # Pods - for those of you who use CocoaPods
 Pods
+
+# Distributables (.dmg)
+dist/

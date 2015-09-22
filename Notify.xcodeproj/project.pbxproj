@@ -339,6 +339,9 @@
 				D41E98841BAC6CAB00C0B101 /* Frameworks */,
 				D41E98851BAC6CAB00C0B101 /* Resources */,
 				3BF2FD0C1BAF652B00C5A133 /* Embed Frameworks */,
+				646598AB1BB1BF9D00BF0569 /* ShellScript */,
+				646598B41BB1BFAD00BF0569 /* ShellScript */,
+				646598B51BB1BFD300BF0569 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -537,6 +540,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		646598AB1BB1BF9D00BF0569 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "#Create a R/W DMG\nimage=\"icon_128x128.png\"\ndir=\"$TEMP_FILES_DIR/disk\"\ndmg=\"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.temp.dmg\"\n\nrm -rf \"$dir\"\nmkdir \"$dir\"\ncp -R \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\" \"$dir\"\nln -s \"/Applications\" \"$dir/Applications\"\nmkdir \"$dir/.background\"\ncp \"$PROJECT_DIR/$PROJECT_NAME/Assets.xcassets/AppIcon.appiconset/$image\" \"$dir/.background\"\nrm -f \"$dmg\"\nhdiutil create \"$dmg\" -srcfolder \"$dir\" -volname \"$PRODUCT_NAME\" -format UDRW\n\n#Mount the disk image, and store the device name\nhdiutil attach \"$dmg\" -noverify -noautoopen -readwrite";
+		};
+		646598B41BB1BFAD00BF0569 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /usr/bin/osascript;
+			shellScript = "#get the dimensions of the main window using a bash script\nset {width, height, scale} to words of (do shell script \"system_profiler SPDisplaysDataType | awk '/Main Display: Yes/{found=1} /Resolution/{width=$2; height=$4} /Retina/{scale=($2 == \\\"Yes\\\" ? 2 : 1)} /^ {8}[^ ]+/{if(found) {exit}; scale=1} END{printf \\\"%d %d %d\\\\n\\\", width, height, scale}'\")\nset x to ((width / 2) / scale)\nset y to ((height / 2) / scale)\n\n#get the product name using a bash script\nset {product_name} to words of (do shell script \"printf \\\"%s\\\", $PRODUCT_NAME\")\n\ntell application \"Finder\"\n    tell disk product_name\n        open\n        set current view of container window to icon view\n        set toolbar visible of container window to false\n        set statusbar visible of container window to false\n        set the bounds of container window to {x, y, x + 512, y + 128}\n        set theViewOptions to the icon view options of container window\n        set arrangement of theViewOptions to not arranged\n        set icon size of theViewOptions to 128\n        set position of item (product_name & \".app\") of container window to {100, 100}\n        set position of item \"Applications\" of container window to {375, 100}\n        update without registering applications\n        close\n    end tell\nend tell";
+		};
+		646598B51BB1BFD300BF0569 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "#!/bin/bash\nimage=\"icon_128x128.png\"\ndir=\"$TEMP_FILES_DIR/disk\"\ndist=\"$PROJECT_DIR/dist\"\ncp \"$PROJECT_DIR/$PROJECT_NAME/Assets.xcassets/AppIcon.appiconset/$image\" \"$dir/\"\n\n#unmount the temp image file, then convert it to final image file\nsync\nsync\nhdiutil detach /Volumes/$PRODUCT_NAME\nrm -f \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.dmg\"\nhdiutil convert \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.temp.dmg\" -format UDZO -imagekey zlib-level=9 -o \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.dmg\"\nrm -f \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.temp.dmg\"\n\n#Change the icon of the image file\nsips -i \"$dir/$image\"\nDeRez -only icns \"$dir/$image\" > \"$dir/tmpicns.rsrc\"\nRez -append \"$dir/tmpicns.rsrc\" -o \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.dmg\"\nSetFile -a C \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.dmg\"\n\nrm -rf \"$dir\"\n\nmkdir \"$dist\"\nmv \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.dmg\" \"$dist/$PRODUCT_NAME.dmg\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D41E98831BAC6CAB00C0B101 /* Sources */ = {
