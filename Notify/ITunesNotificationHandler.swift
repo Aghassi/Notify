@@ -11,7 +11,7 @@ import Cocoa
 import Alamofire
 import SwiftyJSON
 
-class ITunesNotificationHandler: NSObject, NSUserNotificationCenterDelegate, NotificationHandler {
+class ITunesNotificationHandler: NSObject, NotificationHandler {
     var track = Song()
     let client: Client = .iTunes
     

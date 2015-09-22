@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-protocol NotificationHandler {
+protocol NotificationHandler: NSUserNotificationCenterDelegate {
     // The current track being played
     var track: Song { get }
     var client: Client { get }
