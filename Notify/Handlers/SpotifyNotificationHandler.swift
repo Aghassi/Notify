@@ -14,7 +14,7 @@ import Alamofire
 import SwiftyJSON
 
 class SpotifyNotificationHandler: NSObject, NSUserNotificationCenterDelegate, NotificationHandler {
-    let track = Song()
+    var track = Song()
     let client: Client = .Spotify
     
     /**
@@ -30,6 +30,9 @@ class SpotifyNotificationHandler: NSObject, NSUserNotificationCenterDelegate, No
     * Getters and Setters *
     **********************/
     func setCurrentTrack(info: NSDictionary) {
+        // Reset to no data
+        track = Song()
+        
         // Set the current track
         track.name = info["Name"] as! String
         track.artist = info["Artist"] as! String
