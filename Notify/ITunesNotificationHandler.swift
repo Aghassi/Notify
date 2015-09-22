@@ -39,11 +39,9 @@ class ITunesNotificationHandler: NSObject, NSUserNotificationCenterDelegate, Not
         
         // Get the album art for the track
         let storeUrl = info["Store URL"] as! String
-        NSLog("%@", info)
         let albumId = getQueryStringParameter(storeUrl, param: "p")
         if (albumId != nil) {
             let itunesApiUrl = "https://itunes.apple.com/lookup?id=" + albumId!
-            NSLog("%@", itunesApiUrl)
             Alamofire.request(.GET, itunesApiUrl, parameters: nil)
                 .responseJSON { (req, res, result) in
                     if (result.isFailure) {
