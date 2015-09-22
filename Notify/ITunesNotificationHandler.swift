@@ -12,7 +12,7 @@ import Alamofire
 import SwiftyJSON
 
 class ITunesNotificationHandler: NSObject, NSUserNotificationCenterDelegate, NotificationHandler {
-    let track = Song()
+    var track = Song()
     let client: Client = .iTunes
     
     /**
@@ -27,20 +27,27 @@ class ITunesNotificationHandler: NSObject, NSUserNotificationCenterDelegate, Not
     * Getters and Setters *
     **********************/
     func setCurrentTrack(info: NSDictionary) {
+        // Reset to no data
+        track = Song()
+        
         // Set the current track
         track.name = info["Name"] as! String
-        if let artist = info["Album Artist"] {
+        if let albumArtist = info["Album Artist"] {
+            track.artist = albumArtist as! String
+        }
+        else if let artist = info["Artist"] {
             track.artist = artist as! String
         }
-        else {
-            track.artist = info["Artist"] as! String
+        
+        if let album = info["Album"] {
+            track.album = album as! String
         }
-        track.album = info["Album"] as! String
         
         // Get the album art for the track
         let storeUrl = info["Store URL"] as! String
         let albumId = getQueryStringParameter(storeUrl, param: "p")
         if (albumId != nil) {
+            NSLog("%@", info)
             let itunesApiUrl = "https://itunes.apple.com/lookup?id=" + albumId!
             Alamofire.request(.GET, itunesApiUrl, parameters: nil)
                 .responseJSON { (req, res, result) in
