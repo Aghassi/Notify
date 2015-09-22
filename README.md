@@ -7,7 +7,7 @@ You can play or pause music, skip to the next song, or go back to the previous s
 ## Compatibility
 Spotify  
 iTunes  
-Mac OS X 10.10
+Mac OS X 10.10 and 10.11
 
 ### Example Notification
 <p align="center">
