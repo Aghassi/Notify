@@ -24,8 +24,8 @@ extension ApplicationController {
     @param command The command to be sent (next, playpause, previous etc.)
     **/
     private func sendCommand(app: Application, _ command: Command) {
-        let script = "tell application \"" + app.rawValue + "\"\n" +
-                        command.rawValue + " track\n" +
+        let script = "tell application \"\(app.rawValue)\"\n" +
+                        "\(command.rawValue) track\n" +
                      "end tell"
         runScript(script)
     }

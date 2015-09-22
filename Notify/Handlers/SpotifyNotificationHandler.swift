@@ -43,7 +43,7 @@ class SpotifyNotificationHandler: NSObject, NSUserNotificationCenterDelegate, No
         track.trackID = fullId.componentsSeparatedByString(":")[2]
         
         // Get the album art for the track
-        let spotifyApiUrl = "https://api.spotify.com/v1/tracks/" + track.trackID
+        let spotifyApiUrl = "https://api.spotify.com/v1/tracks/\(track.trackID)"
         Alamofire.request(.GET, spotifyApiUrl, parameters: nil)
             .responseJSON { (req, res, result) in
                 if (result.isFailure) {
